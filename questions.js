@@ -1,4 +1,4 @@
-const questions = [
+export const questions = [
   {
     question: "Which company developed JavaScript?",
     options: ["Microsoft", "Netscape", "Google"],
