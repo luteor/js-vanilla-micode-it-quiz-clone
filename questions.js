@@ -1,77 +1,134 @@
 export const questions = [
   {
-    question: "Which company developed JavaScript?",
-    options: ["Microsoft", "Netscape", "Google"],
-    answer: "Netscape",
-  },
-  {
-    question: "When was the World Wide Web Consortium (W3C) founded?",
-    options: ["1994", "2000", "2002"],
-    answer: "1994",
+    question:
+      "Which programming language was created by Dennis Ritchie in 1972?",
+    options: ["COBOL", "C", "Python", "Smurf Language"],
+    answer: "C",
   },
   {
     question:
-      "What acronym refers to the markup language used to structure the content of web pages?",
-    options: ["HTML", "XML", "CSS"],
+      "What is the name of the first electronic computer, built in 1946?",
+    options: ["ENIAC", "EDVAC", "UNIVAC", "Terminator"],
+    answer: "ENIAC",
+  },
+  {
+    question: "What is the Google search algorithm?",
+    options: ["PageRank", "GoogleBot", "Bing", "Brain Juice"],
+    answer: "PageRank",
+  },
+  {
+    question: "Which programming language was created by Yukihiro Matsumoto?",
+    options: ["Ruby", "JavaScript", "Python", "Java"],
+    answer: "Ruby",
+  },
+  {
+    question: "Which operating system was developed by Linus Torvalds?",
+    options: ["Windows", "macOS", "Android", "Linux"],
+    answer: "Linux",
+  },
+  {
+    question: "What is the protocol used to transfer files on the web?",
+    options: ["HTTP", "FTP", "SMTP", "Pizza Transfer Protocol"],
+    answer: "FTP",
+  },
+  {
+    question: "What is the main use of the SQL programming language?",
+    options: [
+      "Database Management",
+      "Web Development",
+      "Scientific Computing",
+      "Writing Novels",
+    ],
+    answer: "Database Management",
+  },
+  {
+    question: "Which company developed the Java programming language?",
+    options: ["Microsoft", "Apple", "Sun Microsystems", "Pieds Nickelés Inc."],
+    answer: "Sun Microsystems",
+  },
+  {
+    question: "What is the main difference between IPv4 and IPv6?",
+    options: [
+      "IP Address Size",
+      "Connection Speed",
+      "Security",
+      "Pizza Flavor",
+    ],
+    answer: "IP Address Size",
+  },
+  {
+    question:
+      "What is the name of the IBM supercomputer that played 'Jeopardy!'?",
+    options: ["Deep Blue", "Watson", "AlphaGo", "Super Skynet"],
+    answer: "Watson",
+  },
+  {
+    question: "What is the main use of the R programming language?",
+    options: [
+      "Web Development",
+      "Scientific Computing",
+      "Artificial Intelligence",
+      "Creating Memes",
+    ],
+    answer: "Scientific Computing",
+  },
+  {
+    question:
+      "What is the name of the markup language used to structure web page content?",
+    options: ["HTML", "CSS", "JavaScript", "Chocolate Cake"],
     answer: "HTML",
   },
   {
-    question: "What is Git?",
+    question:
+      "What is the name of the unit of measurement for hard disk storage capacity?",
+    options: ["Byte", "Bit", "Nibble", "Croissant"],
+    answer: "Byte",
+  },
+  {
+    question: "Which technology is used to create 3D images in web browsers?",
+    options: ["WebGL", "HTML5", "CSS3", "Oil Painting"],
+    answer: "WebGL",
+  },
+  {
+    question: "What is the name of the inventor of the typewriter?",
     options: [
-      "A version control system",
-      "A programming language",
-      "A network security protocol",
+      "Christopher Latham Sholes",
+      "Charles Babbage",
+      "Herman Hollerith",
+      "Mad Hatter",
     ],
-    answer: "A version control system",
+    answer: "Christopher Latham Sholes",
+  },
+  {
+    question: "What is the speed of light in fiber optics?",
+    options: ["300,000 km/s", "225,000 km/s", "200,000 km/s", "1 snail/s"],
+    answer: "225,000 km/s",
+  },
+  {
+    question: "What is the name of the lossless image format?",
+    options: ["JPEG", "GIF", "PNG", "Dinosaur Format"],
+    answer: "PNG",
   },
   {
     question:
-      "What is the main function of the HTTPS protocol on the internet?",
-    options: ["Encrypt data", "Speed up browsing", "Manage emails"],
-    answer: "Encrypt data",
-  },
-  {
-    question: "What is a search engine?",
+      "What is the name of the famous artificial intelligence test proposed by Alan Turing?",
     options: [
-      "Software for browsing the web",
-      "A tool for searching for information on the internet",
-      "A hardware component storing data online",
+      "Turing Test",
+      "Farnsworth Test",
+      "Voight-Kampff Test",
+      "Pea Test",
     ],
-    answer: "A tool for searching for information on the internet",
-  },
-  {
-    question: "In which year was the Google Chrome browser launched?",
-    options: ["2008", "2010", "2012"],
-    answer: "2008",
+    answer: "Turing Test",
   },
   {
     question:
-      "What does the term 'open source' represent in the context of software?",
-    options: [
-      "Free software",
-      "Software whose source code is available and can be modified",
-      "Proprietary software",
-    ],
-    answer: "Software whose source code is available and can be modified",
+      "What is the name of the neural network developed by Google for image recognition?",
+    options: ["Inception", "ResNet", "VGG", "PicassoNet"],
+    answer: "Inception",
   },
   {
-    question: "What is the main goal of a VPN?",
-    options: [
-      "Speed up the connection",
-      "Ensure the confidentiality of data transmitted over a public network",
-      "Block access to certain websites",
-    ],
-    answer:
-      "Ensure the confidentiality of data transmitted over a public network",
-  },
-  {
-    question: "What is a brute force attack?",
-    options: [
-      "An attack that uses viruses",
-      "An attack aimed at guessing a password by trying different combinations",
-      "An attack by flooding requests on a server",
-    ],
-    answer:
-      "An attack aimed at guessing a password by trying different combinations",
+    question: "Who is the founder of SpaceX?",
+    options: ["Jeff Bezos", "Richard Branson", "Elon Musk", "Buzz Lightyear"],
+    answer: "Elon Musk",
   },
 ];
