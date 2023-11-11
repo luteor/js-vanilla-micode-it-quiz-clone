@@ -1,4 +1,4 @@
-export const questions = [
+export const allQuizQuestions = [
   {
     question:
       "Which programming language was created by Dennis Ritchie in 1972?",

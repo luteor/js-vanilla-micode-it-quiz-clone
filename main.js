@@ -1,7 +1,9 @@
 import "./reset.css";
 import "./style.css";
 
-import { questions } from "./questions.js";
+import { allQuizQuestions } from "./questions.js";
+
+const quizQuestions = [...allQuizQuestions];
 
 startQuiz();
 
@@ -10,13 +12,22 @@ function startQuiz() {
 
   buttonElement.addEventListener("click", function () {
     buttonElement.remove();
-    displayQuiz(questions);
+    displayQuiz();
   });
 }
 
-function displayQuiz(questions) {
-  const question = getOneRandomQuestion(questions);
+function displayQuiz(lastQuestion) {
+  if (quizQuestions.length !== allQuizQuestions.length) {
+    document.querySelector("h2").remove();
+    document.querySelector(".answers").remove();
+  }
+  console.log(quizQuestions);
 
+  const index = quizQuestions.findIndex(
+    (questionDisplay) => questionDisplay === lastQuestion
+  );
+  quizQuestions.splice(index, 1);
+  const question = getOneRandomQuestion(quizQuestions);
   displayOneQuestionWithAnswerOptions(question);
 }
 
@@ -81,14 +92,18 @@ function checkSubmitAnswer(question, answerOption) {
   );
   goodAnswerOptionElement.classList.remove("answer-button");
   goodAnswerOptionElement.classList.add("correct-answer");
+
+  setTimeout(() => {
+    displayQuiz(question);
+  }, 1000);
 }
 
 function getOneRandomQuestion(questions) {
-  const quizQuestions = [...questions];
+  const randomIndex = Math.floor(Math.random() * questions.length);
 
-  const randomIndex = Math.floor(Math.random() * quizQuestions.length);
-
-  const question = quizQuestions[randomIndex];
+  const question = questions[randomIndex];
 
   return question;
 }
+
+function UpdateQuizQuestions(lastQuestion) {}
