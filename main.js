@@ -1,85 +1,88 @@
 import "./reset.css";
 import "./style.css";
 
-import { allQuizQuestions } from "./questions.js";
+import { quizQuestions } from "./questions.js";
 
-const quizQuestions = [...allQuizQuestions];
+const remainingQuizQuestions = [...quizQuestions];
 
 startQuiz();
 
 function startQuiz() {
-  const buttonElement = document.querySelector("#start-button");
+  const startButtonElement = document.querySelector("#start-button");
 
-  buttonElement.addEventListener("click", function () {
-    buttonElement.remove();
+  startButtonElement.addEventListener("click", function () {
+    startButtonElement.remove();
     displayQuiz();
   });
 }
 
 function displayQuiz(lastQuestion) {
-  if (quizQuestions.length !== allQuizQuestions.length) {
+  if (remainingQuizQuestions.length !== quizQuestions.length) {
     document.querySelector("h2").remove();
     document.querySelector(".answers").remove();
   }
-  console.log(quizQuestions);
 
-  const index = quizQuestions.findIndex(
-    (questionDisplay) => questionDisplay === lastQuestion
+  const lastQuestionIndex = remainingQuizQuestions.findIndex(
+    (question) => question === lastQuestion
   );
-  quizQuestions.splice(index, 1);
-  const question = getOneRandomQuestion(quizQuestions);
-  displayOneQuestionWithAnswerOptions(question);
+  remainingQuizQuestions.splice(lastQuestionIndex, 1);
+
+  const randomQuestion = getOneRandomQuestion(remainingQuizQuestions);
+  displayOneQuestionWithAnswerOptions(randomQuestion);
 }
 
-function displayOneQuestionWithAnswerOptions(oneQuestion) {
-  const appDiv = document.querySelector("#app");
+function displayOneQuestionWithAnswerOptions(randomQuestion) {
+  const appDivElement = document.querySelector("#app");
 
   const questionElement = document.createElement("h2");
-  questionElement.innerText = oneQuestion.question;
+  questionElement.innerText = randomQuestion.question;
 
-  appDiv.appendChild(questionElement);
+  appDivElement.appendChild(questionElement);
 
   const AnswersElement = document.createElement("div");
   AnswersElement.setAttribute("class", "answers");
 
-  appDiv.appendChild(AnswersElement);
+  appDivElement.appendChild(AnswersElement);
 
-  const answerOptions = oneQuestion.options;
+  const answerOptions = randomQuestion.options;
 
   answerOptions.forEach((option) => {
     const answerDiv = document.querySelector(".answers");
+
     const answerOptionId =
       1 + answerOptions.findIndex((findOption) => findOption === option);
     const answerOptionElement = document.createElement("button");
     answerOptionElement.innerText = option;
     answerOptionElement.classList.add("answer-button");
     answerOptionElement.setAttribute("id", `option-${answerOptionId}`);
-
     answerOptionElement.addEventListener("click", () =>
-      checkSubmitAnswer(oneQuestion, option)
+      checkSubmittedAnswer(randomQuestion, option)
     );
 
     answerDiv.appendChild(answerOptionElement);
   });
 }
 
-function checkSubmitAnswer(question, answerOption) {
-  const answerButtons = document.querySelectorAll(".answer-button");
-  answerButtons.forEach((button) => {
-    button.disabled = true;
+function checkSubmittedAnswer(question, answerOptionSubmitted) {
+  const answerOptionsElement = document.querySelectorAll(".answer-button");
+  answerOptionsElement.forEach((answerOption) => {
+    answerOption.disabled = true;
   });
 
   const answerOptions = question.options;
 
   const answerOptionIndex =
-    1 + answerOptions.findIndex((findOption) => findOption === answerOption);
+    1 +
+    answerOptions.findIndex(
+      (findOption) => findOption === answerOptionSubmitted
+    );
 
-  const correctAnswer = question.answer;
+  const goodAnswerOption = question.answer;
   const correctAnswerOptionIndex =
-    1 + answerOptions.findIndex((findOption) => findOption === correctAnswer);
-  console.log(correctAnswerOptionIndex);
+    1 +
+    answerOptions.findIndex((findOption) => findOption === goodAnswerOption);
 
-  if (question.answer !== answerOption) {
+  if (question.answer !== answerOptionSubmitted) {
     const wrongAnswerOptionElement = document.querySelector(
       `#option-${answerOptionIndex}`
     );
@@ -105,5 +108,3 @@ function getOneRandomQuestion(questions) {
 
   return question;
 }
-
-function UpdateQuizQuestions(lastQuestion) {}
