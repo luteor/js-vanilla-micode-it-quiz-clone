@@ -4,34 +4,41 @@ import "./style.css";
 import { quizQuestions } from "./questions.js";
 
 const remainingQuizQuestions = [...quizQuestions];
+let score = 0;
 
 startQuiz();
 
 function startQuiz() {
   const startButtonElement = document.querySelector("#start-button");
 
-  startButtonElement.addEventListener("click", function () {
+  startButtonElement.addEventListener("click", () => {
     startButtonElement.remove();
     displayQuiz();
   });
 }
 
-function displayQuiz(lastQuestion) {
-  if (remainingQuizQuestions.length !== quizQuestions.length) {
-    document.querySelector("h2").remove();
-    document.querySelector(".answers").remove();
+function displayQuiz() {
+  const questionElement = document.querySelector("h2");
+  if (questionElement) {
+    questionElement.remove();
   }
 
-  const lastQuestionIndex = remainingQuizQuestions.findIndex(
-    (question) => question === lastQuestion
-  );
-  remainingQuizQuestions.splice(lastQuestionIndex, 1);
+  const answerOptionsElement = document.querySelector(".answers");
+  if (answerOptionsElement) {
+    answerOptionsElement.remove();
+  }
 
-  const randomQuestion = getOneRandomQuestion(remainingQuizQuestions);
-  displayOneQuestionWithAnswerOptions(randomQuestion);
+  if (remainingQuizQuestions.length > 0) {
+    const randomQuestion = getOneRandomQuestion(remainingQuizQuestions);
+    displayQuestionWithAnswerOptions(randomQuestion);
+  }
+
+  if (remainingQuizQuestions.length === 0) {
+    displayFinalScore(score);
+  }
 }
 
-function displayOneQuestionWithAnswerOptions(randomQuestion) {
+function displayQuestionWithAnswerOptions(randomQuestion) {
   const appDivElement = document.querySelector("#app");
 
   const questionElement = document.createElement("h2");
@@ -49,12 +56,13 @@ function displayOneQuestionWithAnswerOptions(randomQuestion) {
   answerOptions.forEach((option) => {
     const answerDiv = document.querySelector(".answers");
 
-    const answerOptionId =
-      1 + answerOptions.findIndex((findOption) => findOption === option);
+    const answerOptionId = answerOptions.findIndex(
+      (findOption) => findOption === option
+    );
     const answerOptionElement = document.createElement("button");
     answerOptionElement.innerText = option;
     answerOptionElement.classList.add("answer-button");
-    answerOptionElement.setAttribute("id", `option-${answerOptionId}`);
+    answerOptionElement.setAttribute("id", `option-${answerOptionId + 1}`);
     answerOptionElement.addEventListener("click", () =>
       checkSubmittedAnswer(randomQuestion, option)
     );
@@ -71,33 +79,36 @@ function checkSubmittedAnswer(question, answerOptionSubmitted) {
 
   const answerOptions = question.options;
 
-  const answerOptionIndex =
-    1 +
-    answerOptions.findIndex(
-      (findOption) => findOption === answerOptionSubmitted
-    );
+  const answerOptionIndex = answerOptions.findIndex(
+    (findOption) => findOption === answerOptionSubmitted
+  );
 
   const goodAnswerOption = question.answer;
-  const correctAnswerOptionIndex =
-    1 +
-    answerOptions.findIndex((findOption) => findOption === goodAnswerOption);
+  const correctAnswerOptionIndex = answerOptions.findIndex(
+    (findOption) => findOption === goodAnswerOption
+  );
 
   if (question.answer !== answerOptionSubmitted) {
     const wrongAnswerOptionElement = document.querySelector(
-      `#option-${answerOptionIndex}`
+      `#option-${answerOptionIndex + 1}`
     );
     wrongAnswerOptionElement.classList.remove("answer-button");
     wrongAnswerOptionElement.classList.add("wrong-answer");
   }
 
   const goodAnswerOptionElement = document.querySelector(
-    `#option-${correctAnswerOptionIndex}`
+    `#option-${correctAnswerOptionIndex + 1}`
   );
   goodAnswerOptionElement.classList.remove("answer-button");
   goodAnswerOptionElement.classList.add("correct-answer");
 
+  if (question.answer === answerOptionSubmitted) {
+    score++;
+  }
+
   setTimeout(() => {
-    displayQuiz(question);
+    deleteQuestionFromRemainingQuestions(question);
+    displayQuiz();
   }, 1000);
 }
 
@@ -107,4 +118,55 @@ function getOneRandomQuestion(questions) {
   const question = questions[randomIndex];
 
   return question;
+}
+
+function displayFinalScore(score) {
+  const appDivElement = document.querySelector("#app");
+
+  const scoreElement = document.createElement("h2");
+  scoreElement.innerText = `Score final : ${score}/${quizQuestions.length}`;
+
+  appDivElement.appendChild(scoreElement);
+
+  const scoreConclusionElement = document.createElement("div");
+  scoreConclusionElement.setAttribute("class", "score-conclusion");
+
+  appDivElement.appendChild(scoreConclusionElement);
+
+  if (score > 15) {
+    const scoreConclusionDiv = document.querySelector(".score-conclusion");
+
+    const conclusionSentence = document.createElement("p");
+    conclusionSentence.innerText =
+      "🎉 Congratulations! You're a computer expert!";
+
+    scoreConclusionDiv.appendChild(conclusionSentence);
+  }
+
+  if (score < 15 && score > 10) {
+    const scoreConclusionDiv = document.querySelector(".score-conclusion");
+
+    const conclusionSentence = document.createElement("p");
+    conclusionSentence.innerText =
+      "😀 Bravo! Good score! You're on the right track.";
+
+    scoreConclusionDiv.appendChild(conclusionSentence);
+  }
+
+  if (score < 10) {
+    const scoreConclusionDiv = document.querySelector(".score-conclusion");
+
+    const conclusionSentence = document.createElement("p");
+    conclusionSentence.innerText =
+      "🙂 Not bad, but there are still things to learn. Keep studying study!";
+
+    scoreConclusionDiv.appendChild(conclusionSentence);
+  }
+}
+
+function deleteQuestionFromRemainingQuestions(deleteQuestion) {
+  const deleteQuestionIndex = remainingQuizQuestions.findIndex(
+    (question) => question === deleteQuestion
+  );
+  remainingQuizQuestions.splice(deleteQuestionIndex, 1);
 }
