@@ -13,7 +13,6 @@ function startQuiz() {
 
   startButtonElement.addEventListener("click", () => {
     startButtonElement.remove();
-    displayProgressBar();
     displayQuiz();
   });
 }
@@ -28,6 +27,8 @@ function displayQuiz() {
   if (answerOptionsElement) {
     answerOptionsElement.remove();
   }
+
+  displayQuizProgress();
 
   if (remainingQuizQuestions.length > 0) {
     const randomQuestion = getOneRandomQuestion(remainingQuizQuestions);
@@ -170,4 +171,13 @@ function deleteQuestionFromRemainingQuestions(deleteQuestion) {
     (question) => question === deleteQuestion
   );
   remainingQuizQuestions.splice(deleteQuestionIndex, 1);
+}
+
+function displayQuizProgress() {
+  const statusBarElement = document.querySelector(".status-bar");
+  statusBarElement.style.width = `${
+    ((quizQuestions.length - remainingQuizQuestions.length) /
+      quizQuestions.length) *
+    100
+  }%`;
 }
