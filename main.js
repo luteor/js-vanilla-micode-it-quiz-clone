@@ -13,6 +13,7 @@ function startQuiz() {
 
   startButtonElement.addEventListener("click", () => {
     startButtonElement.remove();
+    displayProgressBar();
     displayQuiz();
   });
 }
