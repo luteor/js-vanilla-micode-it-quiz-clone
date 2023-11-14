@@ -1,5 +1,5 @@
 // vite.config.js
 export default {
   // config options
-  base: "/js-vanilla-micode-it-quiz-clone",
+  base: "/micode-it-quiz-clone-vanilla-js",
 };
