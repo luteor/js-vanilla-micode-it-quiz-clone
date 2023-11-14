@@ -126,7 +126,7 @@ function displayFinalScore(score) {
   const appDivElement = document.querySelector("#app");
 
   const scoreElement = document.createElement("h2");
-  scoreElement.innerText = `Score final : ${score}/${quizQuestions.length}`;
+  scoreElement.innerText = `Final score : ${score}/${quizQuestions.length}`;
 
   appDivElement.appendChild(scoreElement);
 
