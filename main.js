@@ -9,7 +9,7 @@ let score = 0;
 startQuiz();
 
 function startQuiz() {
-  const startButtonElement = document.querySelector("#start-button");
+  const startButtonElement = document.querySelector(".start-button");
 
   startButtonElement.addEventListener("click", () => {
     startButtonElement.remove();
@@ -63,7 +63,7 @@ function displayQuestionWithAnswerOptions(randomQuestion) {
     );
     const answerOptionElement = document.createElement("button");
     answerOptionElement.innerText = option;
-    answerOptionElement.classList.add("answer-button");
+    answerOptionElement.classList.add("answers__button");
     answerOptionElement.setAttribute("id", `option-${answerOptionId + 1}`);
     answerOptionElement.addEventListener("click", () =>
       checkSubmittedAnswer(randomQuestion, option)
@@ -74,7 +74,7 @@ function displayQuestionWithAnswerOptions(randomQuestion) {
 }
 
 function checkSubmittedAnswer(question, answerOptionSubmitted) {
-  const answerOptionsElement = document.querySelectorAll(".answer-button");
+  const answerOptionsElement = document.querySelectorAll(".answers__button");
   answerOptionsElement.forEach((answerOption) => {
     answerOption.disabled = true;
   });
@@ -94,15 +94,15 @@ function checkSubmittedAnswer(question, answerOptionSubmitted) {
     const wrongAnswerOptionElement = document.querySelector(
       `#option-${answerOptionIndex + 1}`
     );
-    wrongAnswerOptionElement.classList.remove("answer-button");
-    wrongAnswerOptionElement.classList.add("wrong-answer");
+    wrongAnswerOptionElement.classList.remove("answers__button");
+    wrongAnswerOptionElement.classList.add("answers__button--wrong");
   }
 
   const goodAnswerOptionElement = document.querySelector(
     `#option-${correctAnswerOptionIndex + 1}`
   );
-  goodAnswerOptionElement.classList.remove("answer-button");
-  goodAnswerOptionElement.classList.add("correct-answer");
+  goodAnswerOptionElement.classList.remove("answers__button");
+  goodAnswerOptionElement.classList.add("answers__button--correct");
 
   if (question.answer === answerOptionSubmitted) {
     score++;
@@ -174,7 +174,7 @@ function deleteQuestionFromRemainingQuestions(deleteQuestion) {
 }
 
 function displayQuizProgress() {
-  const statusBarElement = document.querySelector(".status-bar");
+  const statusBarElement = document.querySelector(".progress-bar__status");
   statusBarElement.style.width = `${
     ((quizQuestions.length - remainingQuizQuestions.length) /
       quizQuestions.length) *

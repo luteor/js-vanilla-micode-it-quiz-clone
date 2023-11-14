@@ -50,7 +50,7 @@ body {
 
 }
 
-.status-bar {
+.progress-bar__status {
   height: 8px;
   background-color: #10b981;
   width: 0%;
@@ -61,7 +61,7 @@ h1 {
   text-align: center;
 }
 
-#start-button {
+.start-button {
   background-color: #10b981;
   text-align: center;
   cursor: pointer;
@@ -78,7 +78,7 @@ h1 {
 
 }
 
-#start-button:hover {
+.start-button:hover {
   background-color: #047857;
 }
 
@@ -95,7 +95,7 @@ h2 {
 }
 
 
-.answer-button {
+.answers__button {
   outline: none;
   cursor: pointer;
   border: 1px solid black;
@@ -112,11 +112,11 @@ h2 {
   transition: background-color 0.17s ease, color 0.17s ease;
 }
 
-.answer-button:hover {
+.answers__button:hover {
   background-color: lightgrey;
 }
 
-.correct-answer {
+.answers__button--correct {
   outline: none;
   cursor: pointer;
   border: 1px solid black;
@@ -132,7 +132,7 @@ h2 {
   background-color: #10b981;
 }
 
-.wrong-answer {
+.answers__button--wrong {
   outline: none;
   cursor: pointer;
   border: 1px solid black;
